@@ -1,0 +1,20 @@
+# Production stack: the API plus Caddy, which serves the browser test page, forwards /v1 to the
+# API and gets the HTTPS certificate on its own. Run locally over plain HTTP with DOMAIN=:80.
+services:
+  api:
+    build: .
+    restart: unless-stopped
+
+  web:
+    build: ./web
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:-plate-reader.locavibe.com.br}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+
+volumes:
+  caddy_data:

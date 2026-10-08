@@ -1,0 +1,6 @@
+{$DOMAIN} {
+	encode
+	reverse_proxy /v1/* api:8000
+	root * /srv
+	file_server
+}
