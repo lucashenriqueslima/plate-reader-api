@@ -1,0 +1,47 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.preview {
+  position: relative;
+  margin-top: 16px;
+}
+
+.preview img {
+  display: block;
+  width: 100%;
+}
+
+.box {
+  position: absolute;
+  border: 3px solid #22c55e;
+  box-sizing: border-box;
+}
+
+.error {
+  color: #dc2626;
+}
+
+table {
+  margin-top: 16px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid #8884;
+}

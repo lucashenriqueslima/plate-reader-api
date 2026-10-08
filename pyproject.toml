@@ -1,0 +1,29 @@
+[project]
+name = "plate-reader-api"
+version = "0.1.0"
+description = "HTTP API that reads Brazilian license plates (old and Mercosul) from photos"
+readme = "README.md"
+authors = [
+    { name = "Lucas", email = "lucashenriqueslima@outlook.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fast-plate-ocr[onnx]>=1.1.0",
+    "fastapi>=0.142.3",
+    "numpy>=2.5.3",
+    "open-image-models>=0.6.0",
+    "opencv-python-headless>=5.0.0.93",
+    "python-multipart>=0.0.32",
+    "uvicorn>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "httpx2>=2.13.1",
+    "pillow>=12.3.0",
+    "pytest>=9.1.1",
+]

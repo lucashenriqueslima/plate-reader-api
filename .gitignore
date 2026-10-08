@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+
+# Plate photos used for the benchmark: never commit them.
+data/plate_photos/
