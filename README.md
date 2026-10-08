@@ -80,6 +80,26 @@ npm run dev
 Abra http://localhost:5173 e envie uma foto. A página mostra as placas lidas e desenha a
 caixa de cada uma sobre a foto. O Vite encaminha `/v1` para `localhost:8000`.
 
+## Produção
+
+Roda em https://plate-reader.locavibe.com.br. A página de teste fica na raiz, e a API em `/v1`.
+
+- EC2 `t4g.micro` (ARM, Ubuntu 24.04) chamada `plate-reader`, em `us-east-1`, na conta AWS da
+  Locavibe. Tem IP fixo (Elastic IP) e o registro A fica na zona `locavibe.com.br` do Route53.
+- [compose.yaml](compose.yaml) sobe a API e o Caddy. O Caddy serve a página de teste, encaminha
+  `/v1` para a API e renova o certificado HTTPS sozinho.
+- O servidor clona este repositório com uma deploy key somente leitura.
+- O SSH só aceita conexões do IP liberado no security group `plate-reader`.
+
+Para publicar uma nova versão depois do `git push`:
+
+```bash
+ssh -i ~/.ssh/plate-reader.pem ubuntu@plate-reader.locavibe.com.br
+cd plate-reader-api && git pull && docker compose up -d --build
+```
+
+Para subir a mesma stack localmente, sem HTTPS: `DOMAIN=:80 docker compose up --build`.
+
 ## Benchmark
 
 Monte uma pasta com as fotos e um `labels.csv`:
